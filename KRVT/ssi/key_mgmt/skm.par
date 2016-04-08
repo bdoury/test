@@ -1,0 +1,93 @@
+# The home directory of the station key management tree.
+#
+key_mgmt_home=/home/ssi/config/ssi/key_mgmt
+
+
+##########################################################################
+# The slot of the card reader in which the Luna2 token is placed.
+#
+token_slot=1
+
+# The personal identification number used to login to the token.
+# 
+token_pin=1234567
+
+# The name of the OpenSSL engine to use for this token.
+engine_name=lunapcm
+
+##########################################################################
+# The name of the dsa subdirectory where DSA params are stored. 
+# This directory is below the directory defined by key_mgmt_home.
+#
+dsa_param_dir=dsa
+
+# The name of the current dsa file in the dsa subdiretory holding the P, 
+# Q, and G parameter values.
+dsa_param_file=current_dsa
+
+##########################################################################
+# The name of the station certificate subdirectory where the station's 
+# certificates are located and archived. Also in this directory are the
+# cert requests.
+#
+station_cert_dir=station
+
+# The name of the file holding the current certificate for the station.
+# 	(this is placed in the station_cert_dir)
+#
+station_cert_file=current_cert.pem
+
+# The name of the latest certificate request ASCII information file
+#	(this is placed in the station_cert_dir)
+#
+current_req_ascii_file=req.ascii
+
+# The name of the latest certificate request PEM file; found in the station_cert_dir
+# This file is generated using the AwaitingCert key pair and the current_req_ascii_file.
+#
+current_req_pem_file=req.pem
+
+# The cert_request_lock_file is used to lock the request building. It contains a counter
+# to the number of times the current certificate request was sent.
+#
+current_req_lock=req.lock
+
+# The prefix for the key pair that should be used for S/MIME signing 
+# and authentication of data.
+#
+current_key_prefix=testCurrentWorking
+
+# The prefix for the key pair that is awaiting certification.
+#
+awaiting_cert_key_prefix=testAwaitingCert
+
+
+##########################################################################
+# The name of the directory holding the certificate of authority (CA) 
+# certificate. This is below the key_mgmt_home directory.
+#
+ca_dir=ca
+
+# The name of the current CA file.
+ca_file=ca.cert.x509
+
+# The name of the directory where Certificate Revocation Lists (CRL) 
+# are stored. This directory is below the key_mgmt_home directory.
+#
+crl_dir=crl
+
+# The name of the current CRL.
+crl_file=crl_current.pem
+
+
+############################################################
+# /* ISTI $Id: skm.par,v 1.2 2005/06/22 15:54:50 ilya Exp $*/
+# /* $Log: skm.par,v $
+# /* Revision 1.2  2005/06/22 15:54:50  ilya
+# /* Fixed ssi_adi
+# /*
+# /* Revision 1.1.1.1  2004/04/23 22:28:06  ilya
+# /* Version 2 of ssi configuration
+# /* */
+############################################################
+

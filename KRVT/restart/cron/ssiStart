@@ -1,0 +1,7 @@
+#!/bin/sh
+
+SSI_HOME=/home/ssi
+export SSI_HOME
+
+/usr/local/ssi/bin/ssi_restart -f /home/ssi/config/restart/restart/ssi_restart.conf -c /home/ssi/config/restart/restart/command_manager.conf -o
+

@@ -1,0 +1,39 @@
+#
+#
+# cd2ew configuration file
+#
+# This code receives packets from cdrecv disk buffers, converts them into
+# Earthworm trace buffer format and stuffs them into a wave ring.
+#
+#
+ ModuleId       MOD_CD2EW       # module id for this import,
+ RingName       WAVE_RING       # transport ring to use for input/output,
+ TimeoutNoSend  300
+
+ HeartbeatInt   10                      # Heartbeat interval in seconds
+
+ LogFile        1                                       # If 0, don't write logfile;; if 1, do
+                                # if 2, log to module log but not stderr/stdout
+
+# CDRecvConfigFile - path to configuration file for CDRECV disk buffers. 
+# see 
+CDRECVConfigFile /home/ssi/config/extra/cdtools/cdrecv.par
+
+# Next parameter defines the location of the SQLite3 file which contains
+# out of sequence data (msgdisc table) and references to the last CSFs for
+#each channel (last_chan table). 
+SQLiteFile /home/ssi/data/cdrecv/csf.sql
+
+# MinGapThreshold - Number of seconds between the end of one packet
+# and the beginning of the next that will be considered a gap. The 
+# default is 5 seconds
+MinGapThreshold 5
+
+# MaxPacketWaitTime - Maximum number of seconds to wait for a gap 
+# to be filled. Default is 5 minutes.
+MaxPacketWaitTime 300
+
+# PacketBufferCheckFreq - The number of seconds between packet
+# list checks. The default is 10 seconds
+PacketBufferCheckFreq 10
+

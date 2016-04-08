@@ -1,0 +1,279 @@
+# [Section 1] ############################################
+#
+#  SSI generic parameters
+#
+##########################################################
+
+# This is a site name. It should match column 2 in
+# config/ssi/chan/chan.cnf
+#
+CTBTO_NET=I40PG
+
+#
+# If we want to sign and compress channel subframes
+#before placing them into the disk buffer set next 
+# two values to 1.  Otherwise use 0
+#
+signed_in_db=1
+compressed_in_db=1
+
+#
+# How many seconds of data do we save in a single CSF
+#
+channel_subframe_time_span=10
+
+#
+# File name where we save parameters of the last sent CSF
+# (make sure directory exists and writable)
+#
+start_packet_file=/home/ssi/.start_packet_file.conf
+
+# [Section 1.1]  -----------------------------------------
+#
+#  SSI SKMI (Digital Signature)
+
+skm_param_file=/home/ssi/config/ssi/key_mgmt/skm.par
+
+# [Section 1.2]  -----------------------------------------
+#
+#  SSI channels configuration
+
+channel_config=/home/ssi/config/ssi/chan/chan.cnf
+
+# [Section 1.3]  -----------------------------------------
+#
+# SSI DISK BUFFER
+#
+# Curently the only supported disk buffer type is MySQL/ODBC
+# It's type is 2
+#
+dbuf_type=2
+
+#
+# Reference to the ODBC configuration file
+# 
+ODBC_config=/home/ssi/config/ssi/odbc/ssi_odbc.par
+
+# [Section 1.4]  -----------------------------------------
+#
+# System-Wide Logging
+#
+# Make sure that the 'log-directory' points to a writable directory
+# 
+log-directory=/home/ssi/log
+log-files=50
+log-lines=100000
+log-prog-omit-name
+log-announce-logs
+log-timestamp
+log-time-same-line
+log-time-decimal-secs=3
+log-alpha
+log-alpha-read
+#log-alpha-heap
+
+# [Section 2] ############################################
+#  SSI OI (Operator Interface/Command Interface)
+#
+
+# [Section 2.1]  -----------------------------------------
+# Parameters for ssi_op: next three paramters define filenames
+# for three log files which ssi_op monitors and scrolls
+
+
+monitor-in-log=/home/ssi/log/ssi_nmxp2dbuf
+monitor-out-log=/home/ssi/log/ssi_dbuf2cdrecv
+monitor-drm-log=/home/autodrm/log/ssi_autodrm
+
+# [Section 2.2]  -----------------------------------------
+# Parameter for ssi_restart/ssi_mode
+#
+# MAKE SURE THAT THIS DIRECTORY/FILE IS WRITABLE BY
+# BOTH autodrm and ssi users. /tmp has sticky bit and
+# files in there are only removable by OWNER!
+
+# This is a reference to the ssi_restart.conf configuration file
+# This reference is used by ssi_op(1) to execute ssi_mode(1)
+# and pass a mode switcihing  command to ssi_restart(1)
+
+ssi-restart-conf=/home/ssi/config/restart/restart/ssi_restart.conf
+
+# This is a reference to the command_manager.conf
+# This file is automatically created by ssi_mode whenever
+# ssi_mode or CI requests mode switching. So it should not be
+# manually created. However, make sure that this reference
+# is available for writing by ssi_mode user.
+
+ssi-restart-manager=/home/ssi/config/restart/restart/command_manager.conf
+
+
+# [Section 3] ###########################################
+#
+#  SSI ACDTI (Continuous Data Interface)
+# Latency; after this we  are sending a frame to alpha buffer
+
+latency=300
+
+# [Section 3.2]  -----------------------------------------
+# Via CDTOOLS cdsender
+#
+
+# Location of CDtools config
+cdsend_config=/home/ssi/config/extra/cdtools/cdsend.par
+# 0 = CD1.0; 1=CD1.1
+cdtools_format=1
+
+
+
+# [Section 4] ############################################
+#  Digitizer interface section (DI)
+#
+
+# [Section 4.1]  -----------------------------------------
+# Quanterra digitizers
+#
+# If value in MSEED header is below mseed_clock_threshold for
+# more than "mseed_clock_latency", we set
+# "CLOCK DIFFERENTIAL TOO LARGE" to ON
+#
+
+mseed_clock_threshold=30
+mseed_clock_latency=1000
+
+# [Section 4.2]  -----------------------------------------
+# Nanometrics digitizers
+#
+# The IP address of the Nanometrics digitizer
+#hrd_local_host=172.22.241.76
+hrd_local_host=225.5.5.5
+#hrd_local_host=224.2.2.2
+#
+# UDP port for communication with nanometrics digitizer
+hrd_port=32000
+
+# -1 We do not expect AUTH packets from the digitizer;
+# 0 We expect CD1.0 signature from the digitizer;
+# 1 We expect CD1.1 signature from the digitizer;
+#hrd_signature=1
+hrd_max_buf=100
+hrd_auth_packet_latency=5000
+
+#
+# Use calibration parameters from config = 1; use calibration parameters
+# from digitizer's AUTH packets = 0. Default is 1.
+hrd_calib_from_config=0
+
+#parameters for non-authenticated SOH
+VaultDoorChannel=fast2
+CalibrationChannel=fast3
+VaultDoorThreshold=2.
+CalibrationThreshold=1.
+
+#use or do not use catchup (1:0) Default: use (1)
+hrd_useCatchup=1
+
+
+# [Section 4.3]  -----------------------------------------
+# Guralp digitizers (edit config/par/ssi_gcf2cd11.par)
+#
+#  Note: previously we required another file for GCF options.
+# Not anymore: edit GCF parameters below
+#
+# comm_mode can be "udp" or "serial"
+comm_mode=udp
+
+# for serial you need port and speed to be set
+serial_port=/dev/ttyS1
+speed=19200
+
+# for UDP all you need is the udp_port to be set
+udp_port=1567
+
+# This is how many secs we wait for status bit to clear
+status_bits_latency=100
+
+#This is how many secs we consider the clock quality OK when the clock fails
+clock_quality_threshold=300
+
+#GPS timeout (in seconds)
+gps_timeout=25920
+
+#status bit used for calibration (from ssi_stb library)
+calib_statusBitType=4
+
+#soh_stream_ids (can be multiple entries)
+soh_stream_id=ABC123
+soh_stream_id=ABC345
+
+# [Section 4.4]  -----------------------------------------
+#
+# IDA NRTS interface
+
+nrts_server=idahub.ucsd.edu
+#nrts_server=10.49.65.5
+
+# [Section 4.5]  -----------------------------------------
+#
+# CDRECV interface
+
+# lockFile=STRING, no default
+lockFile=/home/ssi/cdframework.lock
+
+##### Data input parameters      #####
+# cdrecvIndexFilePath=STRING, no default
+#cdrecvIndexFilePath=/home/ssi/data/cdrecv/8000
+cdrecv_config=/home/ssi/config/extra/cdtools/cdrecv.par
+
+# port=INTEGER, no default
+cdrecvPort=8000
+
+# sleepTime=INTEGER seconds, default is 30
+sleepTime=1
+
+
+# [Section 5] ############################################
+#
+#  SSI ADI (Aux Data Input)
+
+#
+# Define if we are using ADI (set to 1) and what is the
+# location of the ADI parameter file
+
+use_ADI=0
+
+#  ADI supports TWO
+#types of Auxiliarly Data Information: old parallel port
+#devices are now adi_type=0 (if adi_type parameter is missed),
+# parallel port type of ADI is assumed by default
+#ADI_TYPE=1 indicates that the ADI information is obtained
+#from the Cyclades terminal server (BlueBox) and the
+#configuration file should contain cyclades_ip and cyclades_port
+#parameters
+
+# Parallel port ADI device
+#adi_type=0
+
+#Terminal Server Cyclades ADI device
+adi_type=1
+cyclades_ip=193.218.117.42
+#cyclades_ip=10.49.65.4
+cyclades_port=604
+
+# ADI packets label in the ADI disk buffer. This label
+# should match the labels in the ADI channel configuration
+# file.
+packet_label=adi1
+#
+# seconds per sample 0.5 to 100 (used by ADI server)
+sample_rate=1
+#
+# A reference to ADI channel configuration file.
+ADI_channel_file=/home/ssi/config/ssi/chan/adi_chan.conf
+
+
+############################################################
+# /* ISTI $Id$*/
+# /* $Log$
+############################################################
+#  END OF CONFIGURATION FILE
+############################################################

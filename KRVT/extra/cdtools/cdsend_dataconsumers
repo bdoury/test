@@ -1,0 +1,11 @@
+#
+# This is the Data Consumer File
+#
+# Data Format:  dataConsumerName=ipaddress:port
+# Example ABCD=190.20.20.20:1234
+#
+IDCOPS=172.22.242.18:8300
+I40OPS=172.22.242.2:8100
+IMSLAB=172.22.241.62:8000
+IMSLAB2=172.22.241.62:7500
+RVO=10.64.71.5:8000

@@ -1,0 +1,10 @@
+#to IMSLAB SSI computer
+#SHGO;SSITEST;*;*;
+#This is Ilya on 04/16/08 changing the next line
+#PALK;SSITEST;P*;B*;
+#to this one
+KRVT;IDCOPS;;;
+#I40PG;IMSLAB;;;
+I40PG;I40OPS;;;
+KRVT;RVO;;;
+I40PG;RVO;;;

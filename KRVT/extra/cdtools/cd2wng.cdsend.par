@@ -1,0 +1,200 @@
+# For use with CDtools Version 1.0.26 and higher
+
+port=8500
+filePath=/home/ssi/data/css/cdsend
+
+# If you want to set up a forwarder configuration uncomment the
+# next line and set a value reasonable for your environment
+#
+cdrecvIndexFilePath=/home/ssi/data/cdsend
+
+# If you want to control your CD Receiver (and CD Sender) uncomment
+# the next lines, run tools/create_key and set values reasonable
+# for your environment
+#
+# certDirectory=:/home/ndc1/certs
+# privateKeyName=:mypasswd:/home/ndc1/certs/CDTEST/private.pem
+# privateKeyId=1
+# senderControlPort=8100
+
+#------------------------------------------------------------- common --
+# connectionRequestTimeout=INTEGER, default is 30 seconds (connection request
+# timeout for CD1 and CD1.1 stations and command request timeout for control
+# station
+# connectionRequestTimeout=30
+# heartBeat=INTEGER, default is 60 seconds (frequency of CD11 ACK_NACK frames
+# sent by the receiver)
+# heartBeat=60
+# cd11Timeout=INTEGER, default is 2,5 *heartBeat (line idle time for CD11
+# stations)
+# cd11Timeout=150
+# cd10Timeout=INTEGER, default is 600 seconds (line idle time for CD1 stations)
+# cd10Timeout=600
+# stationFile=STRING, default is EMPTY (=no checking of station names)
+# stationFile=
+# summaryRefreshTime=INTEGER, default is 600 seconds (time interval in seconds
+# in which utilization information is logged)
+# summaryRefreshTime=600
+# frameCreator=STRING, assigned ID of frame creator, default is "CDTEST"
+# frameCreator=CDTEST
+# responderType= STRING, type of responder (IDC, IMS, NDC), default is "NDC"
+# responderType=NDC
+#---------------------------
+# debugLevel=INTEGER default is 0 (=no messages, 1 -> print only syslog
+# messages, 5 -> 1 + some debug messages, 9 -> 1 + all debug messages)
+debugLevel=2
+#---------------------------
+# enableSyslog=YES|NO|MORE|FULL, default is YES (=create only a few logging
+# messages, NO switches off logging to syslog (after the config file is read)
+# MORE creates many logging messages and FULL more than YES logging messages)
+# enableSyslog=YES
+#---------------------------
+# filePath=STRING, default is EMPTY; filePath=. may be an
+# acceptable value for receiver in offline mode
+# filePath=
+# cdrecvIndexFilePath=STRING, default is EMPTY
+# cdrecvIndexFilePath=
+# fileSize=INTEGER (in kBytes), maximum file size for bin files, default
+# is 0 (=no limit)
+# fileSize=0
+# enableBinFile=NO|YES, default is YES (= create binary files) for receiver
+# in online mode and NO for receiver in offline mode and for other CD apps
+# enableBinFile=YES
+# enableWfdiscFile=YES|NO default is NO (=don't create wfdisc records) for
+# receiver. Not used for sender
+# enableWfdiscFile=YES
+# absWfdiscPaths=YES|NO, default NO (=use relative path in wfdisc records)
+# absWfdiscPaths=NO
+# enableTextFile=NO|YES|MORE|FULL default is NO (=don't create text frame
+# representation, YES -> frame summaries, no channel information,
+# MORE -> YES plus channel information, FULL -> MORE plus codes logged
+# also in human readable text)
+# enableTextFile=NO
+# enableClfFile=YES|NO default is YES (=create concise list of frames) for
+# receiver and NO for other CD apps
+# enableClfFile=YES
+# enableUsrFile=YES|NO default is NO (=don't create files with user defined
+# content)
+# enableUsrFile=NO
+# logConnectionRequests=NONE|ALL|INVALIDONLY, default is NONE (=log no
+# connection requests, log all or only invalid connection/command requests
+# logConnectionRequests=NONE
+# logOutgoingData=NO|YES, default is NO (=don't log outgoing data in .bin file)
+# logOutgoingData=NO
+# userGroupPrivileges=READONLY|READWRITE|NONE, default is READONLY(= read
+# access on files created by the receiver for members of the receivers user
+# group)
+# worldPrivileges=READONLY|READWRITE|NONE, default is READONLY(= read
+# access on files created by the receiver for all users)
+#---------------------------
+# strictModeEnable=YES|NO, default NO (=drop connections when frames deviate
+# from protocol
+# strictModeEnable=NO
+# maxFutureTime=INTEGER, maximum positive deviation, default is 1 second
+# maxFutureTime=1
+#---------------------------
+# verSigEnable=NONE|ALL|FRAME|CHANNEL default is NONE (=do not require and
+# check signature in frames and channels/frames/channels
+# Has no affect for command requests. Frame signature of
+# command requests is always checked!! Command requests are not processed
+# if compiled without authentication)
+# verSigEnable=ALL
+# keyDirectory=STRING, default is EMPTY (dir for keys in ARM format)
+# if STRING is omitted, using of ARM keys is disabled
+# keyDirectory=
+# certDirectory=STRING, default is EMPTY (dir for keys in PEM format)
+# if STRING is omitted, using of PEM keys is disabled
+# certDirectory=
+# ldapServer=STRING, List of of LDAP server(s), default ldap.ctbto.org
+# example: ldapServer="ldap1.ctbto.org:222 ldap2.ctbto.org"
+# ldapServer=ldap.ctbto.org
+# ldapRoot=STRING, default "ou=authenticators, ou=pki lab, o=ctbto"
+# (Search root for LDAP queries)
+# ldapRoot="ou=authenticators, ou=pki lab, o=ctbto"
+# ldapTimeout=INTEGER, max. waiting time for LDAP queries, default 10 seconds
+# ldapTimeout=10
+# crlCheckTime=INTEGER, default is no check (time interval in seconds
+# in which the certificate revoke list is checked. A value of 0 omits the
+# check)
+# crlCheckTime=0
+# keyPreloadFile=STRING, specify the name of a file which defines
+# which keys should be loaded during startup, default EMPTY
+# keyPreloadFile=
+# privateKeyName=STRING, default is EMPTY (file name or tokenID of private key)
+# STRING could be :password:filename or Slot#:pin:pubkeylabel:privkeylabel
+# privateKeyName=
+# privateKeyId=INTEGER, default 0. Key ID of private key
+# used for signing outgoing CD1.1 frames. A value of 0 omits signing of
+# outgoing frames
+# privateKeyId=0
+# secLevelLow=STRING, specify the name of the station which is authorized
+# to send control commands with low security level to receiver/sender, 
+# default EMPTY(=no station is allowed to send low security commands)
+# secLevelLow=
+# secLevelMedium=STRING, specify the name of the station which is authorized
+# to send control commands with medium security level to receiver/sender, 
+# default EMPTY(=no station is allowed to send medium security commands)
+# secLevelMedium=
+# secLevelHigh=STRING, specify the name of the station which is authorized
+# to send control commands with high security level to receiver/sender, 
+# default EMPTY(=no station is allowed to send high security commands)
+# secLevelHigh=
+#------------------------------------------------------------- receiver --
+# port=INTERGER, default is 8000 (well known (listener) port)
+# port=8000
+# startPort=INTEGER, default is port+2 (lowest port for data connections)
+# startPort=8002
+# finishPort=INTEGER, default is port+99 (highest port for data connections)
+# finishPort=8099
+#----------------------------------------------------- sender --
+# dataConsumerFile=STRING, default is EMPTY
+#                  (path and file for definitions of data consumers)
+# productionLineFile=STRING, default is EMPTY
+#                    (path and file for definitions of production lines)
+# processMode=FIFO|LIFO|AS_ARRIVED, default is AS_ARRIVED,
+# processing sequence of data frames, LIFO and FIFO are sorted by nominal time
+# processMode=AS_ARRIVED
+# sleepTimeSched=INTEGER, default is 10 (time in sec. scheduler thread waits)
+# sleepTimeSched=10
+# sleepTimeWork=INTEGER, default is 10 (wait time in seconds for worker threads
+#                        when no data available)
+# sleepTimeWork=10
+# lookBackTimeSched=INTEGER, default is 168 (look back time in hours, defines
+#                            the oldest index file which is processed by the
+#                            scheduler thread when not in fixed interval mode)
+# lookBackTimeSched=168
+# sleepTimeRetry=INTEGER, default is 60 (wait time in seconds for worker
+#                         threads after disconnect or connection
+#                         request failure)
+# sleepTimeRetry=20
+#---------------------------
+# refListStoreInterval=INTEGER, default is 200 (internal reference list
+#                      store interval in nbr of frames)
+refListStoreInterval=1
+#
+# refListStorePath=STRING default is EMPTY (directory where to store
+#                  internal reference lists)
+refListStorePath=/home/ssi/data/css/cdsend
+#---------------------------
+# senderControlPort=INTEGER, default is port+1; senders
+#                            port for control commands
+# senderControlPort=8001
+# dbConnectName=STRING, default is empty; ODBC connection name
+# dbAccount=STRING, default is empty; This parameter specifies the name 
+#           and password to be used when connecting to the database. This 
+#           parameter may be specified as name/password or name/password@dbase.
+#           Any characters after (and including) the @ are ignored because 
+#           the database name is derived from dbConnectName
+# dbConnectPassword=
+#----------------------------------------------------- cd2w  --
+# sensorInfo=STRING, default is empty
+#                    (path and name of file containing sensor information)
+# waveformType=s3/s4, default is s3; data type for sample data in waveform
+#                     files. Not used for sender and receiver
+waveformType=s4
+# cd2wProductionLineFile=STRING, default is EMPTY
+#                    (path and file for definitions of cd2wng production lines)
+cd2wProductionLineFile=/home/ssi/config/extra/cdtools/cd2wng_productionlines.cdsend
+# enableQualityCheck=YES|NO default is NO (=don't create quality information
+#                    file or records) for cd2w. Not used for sender and 
+#                    receiver

@@ -1,0 +1,21 @@
+# Make sure that DIR_BASE dirctory
+# points to the writable directory
+# This is a root directory for your data
+DIR_BASE=/home/ssi/data/dbuf
+
+# make sure that the triple user/password/DSN
+in the next line matches parameters in /etc/odbc.ini
+DATABASE=ims/ims@ims
+
+#Next parameter defines how many hours
+# of data will be stored in the disk buffer
+# 14 days = 336 hours
+BUFFER_SIZE_HOURS=336
+
+#make sure that lockfile is writable
+LOCK_FILE=/home/ssi/.mysql_lock
+
+# Connection timeout in seconds
+DATABASE_CONNECTION_TIMEOUT=10
+
+

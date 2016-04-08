@@ -1,0 +1,4 @@
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/ssi/config/restart/cron/ssiStart 1>/dev/null 2>&1
+0 2 * * * /home/ssi/bin/mkplots_DA.8500 1>/dev/null 2>&1
+0 4 * * * find /home/ssi/data/cdsend/ -name '*.????????.*.clf' -mtime +14 -exec rm {} \; ; find /home/ssi/data/cdsend/ -name '*.????????.*.*bin' -mtime +14 -exec rm {} \; ; find /home/ssi/data/cdsend/ -name '*.????????.*.txt' -mtime +14 -exec rm {} \; ; find /home/ssi/data/cdsend/ -name '_*.????????.idx' -mtime +14 -exec rm {} \; 
+30 4 * * * find /home/ssi/data/css/cdsend/ -name '*.????????.*.mwf' -mtime +7 -exec rm {} \; ; find /home/ssi/data/css/cdsend/ -name '*.????????.*.wfdisc' -mtime +7 -exec rm {} \;

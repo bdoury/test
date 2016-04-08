@@ -1,0 +1,5 @@
+sensor=T36365
+sensor_type=velocity
+coil_constant=1375.98,1353.03,1227.57
+coil_resistance=51000.0,51000.0,51000.0
+sensor_sensitivity=9842.0,9954.0,9844.0

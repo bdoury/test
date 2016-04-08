@@ -1,0 +1,66 @@
+# port=INTERGER, default is 8000 (well known (listener) port)
+port=8000
+# dataformat-checking=NO|YES, default is NO (=online mode, offline mode=YES)
+dataformat-checking=YES
+# start_port=INTEGER, default is port+1 (lowest port for data connections)
+#start_port=8001
+# finish_port=INTEGER, default is port+99 (highest port for data connections)
+#finish_port=8199
+# cd11-time-out=INTEGER, default is 2,5 *heartBeat (line idle time for CD11
+# stations)
+#cd11-time-out=12
+# time-out=INTEGER, default is 600 seconds (line idle time for CD1 stations)
+#time-out=600
+# heartBeat=INTEGER, default is 60 seconds (frequency of CD11 ACK_NACK frames 
+# sent by the receiver)
+#heartBeat=60
+# IPFile=string, default is EMPTY (no checking of IP addresses)
+## IPFile=/home/gerald/ctbto/work/src/samples/ip_file
+# stationfile=STRING, default is EMPTY (no checking of station names)
+#stationFile=/data/imssm/cdrecv/RUN/stations.8000.txt
+# keyDirectory=STRING, default is /opt/idc/certs (dir for keys in ARM format)
+keyDirectory=/home/ssi/data/CERTS
+# certDirectory=STRING, default is /opt/idc/certs (dir for keys in PEM format)
+certDirectory=/home/ssi/data/CERTS
+keyPreloadFile=/home/ssi/data/CERTS/preload.txt
+# file-prefix=STRING, default is /var/spool/idc
+filePath=/home/ssi/data/cdrecv
+cdrecvIndexFilePath=/home/ssi/data/cdrecv
+# summaryRefreshTime=INTEGER, default is 600 seconds (time interval in seconds 
+# in which utilization information is logged
+summaryRefreshTime=600
+# file-size=INTEGER, default is 0 (no limit for .bin files in kBytes)
+# changed by John to be 50240 to make the files larger (and fewer)
+file-size=50240
+# realTimeWfdiscCreate=YES|NO default is YES (create wfdisc30 records)
+enableWfdiscFile=YES
+#realTimeWfdiscCreate=NO
+# enableTextFile=NO|YES default is NO (create text frame summaries)
+enableTextFile=FULL
+# enableClfFile=YES|NO default is YES (create concise list of frames)
+enableClfFile=YES
+# verboseEnable=NO|YES, default is NO (don't create too much logging messages)
+verboseEnable=YES
+# logConnectionRequests=NONE|ALL|INVALIDONLY, default is NONE (log all, 
+# invalid only or none  connection requests
+logConnectionRequests=ALL
+#=NONE|BIN|BINOUT, default is NONE (log outgoing data in .bin,
+# .binout or do not log 
+# changed by John 6 Dec to YES to log outgoing frames
+logOutgoingData=YES
+# verSigEnable=NONE|ALL|FRAME|CHANNEL default is ALL (require and check
+# signature in frames and channels/frames/channels or don't require and check
+# signatures
+verSigEnable=ALL
+# LDAP-Root=STRING, default o=CTBTO (Search root for LDAP queries)
+LDAP-IPaddress=scd2ldap.siemens.net
+# debugLevel=INTEGER default is 0 (0 is no messages, 9 is many messages)
+debugLevel=2
+# absWfdiscPaths=YES|NO, default NO (use absolute path for wfdisc records)
+absWfdiscPaths=YES
+# strictModeEnable=YES|NO, default YES (drop connections when frames deviate
+# from protocol
+strictModeEnable=NO
+# privateKey=STRING, default is empty (file name or tokenID of private key)
+# STRING could be :password:filename or Slot#:pin:pubkeylabel:privkeylabel 
+# privateKey=

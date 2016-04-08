@@ -1,0 +1,163 @@
+# For use with CDtools Version 1.0.18 and higher
+
+# port=INTERGER, default is 8000 (well known (listener) port)
+port=8500
+# startPort=INTEGER, default is port+1 (lowest port for data connections)
+# startPort=8001
+# finishPort=INTEGER, default is port+99 (highest port for data connections)
+# finishPort=8099
+# connectionRequestTimeout=INTEGER, default is 30 seconds (connection request
+# timeout for CD1 and CD1.1 stations
+# connectionRequestTimeout=30
+# heartBeat=INTEGER, default is 60 seconds (frequency of CD11 ACK_NACK frames
+# sent by the receiver)
+# heartBeat=60
+# cd11Timeout=INTEGER, default is 2,5 *heartBeat (line idle time for CD11
+# stations)
+# cd11Timeout=150
+# cd10Timeout=INTEGER, default is 600 seconds (line idle time for CD1 stations)
+# cd10Timeout=600
+# stationFile=STRING, default is EMPTY (=no checking of station names)
+# stationFile=
+# summaryRefreshTime=INTEGER, default is 600 seconds (time interval in seconds
+# in which utilization information is logged)
+# summaryRefreshTime=600
+# frameCreator=STRING, assigned ID of frame creator, default is "CDTEST"
+frameCreator=I40PG
+# responderType= STRING, type of responder (IDC, IMS, NDC), default is "IDC"
+# responderType=IDC
+# debugLevel=INTEGER default is 0 (=no messages, 1 -> print only syslog
+# messages, 5 -> 1 + some debug messages, 9 -> 1 + all debug messages)
+debugLevel=1
+# syslogLevel=INTEGER default is 2 (=all messages go to syslog, 
+# 0 -> no message goes to syslog)
+# syslogLevel=2
+#---------------------------
+# filePath=STRING, default is /var/spool/idc
+filePath=/home/ssi/data/cdsend
+# cdrecvIndexFilePath=STRING, default is /var/spool/idc
+cdrecvIndexFilePath=/home/ssi/data/cdsend
+# fileSize=INTEGER (in kBytes), maximum file size for bin files, default
+# is 0 (=no limit)
+# fileSize=0
+# enableWfdiscFile=YES|NO default is YES (=create wfdisc records)
+# enableWfdiscFile=YES
+# absWfdiscPaths=YES|NO, default NO (=use relative path in wfdisc records)
+# absWfdiscPaths=NO
+# enableTextFile=NO|YES|MORE|FULL default is NO (=don't create text frame
+# representation, YES -> frame summaries, no channel information,
+# MORE -> YES plus channel information, FULL -> MORE plus codes logged
+# also in human readable text)
+enableTextFile=FULL
+# enableClfFile=YES|NO default is YES (=create concise list of frames)
+enableClfFile=YES
+# verboseEnable=YES|NO|MORE, default is YES (=create many logging messages,
+# NO are no logging messages and MORE are more than YES logging messages)
+# verboseEnable=YES
+# logConnectionRequests=NONE|ALL|INVALIDONLY, default is NONE (=log no
+# connection requests, log all or only invalid connection requests
+# logConnectionRequests=NONE
+# logOutgoingData=NO|YES, default is NO (=don't log outgoing data in .bin file)
+logOutgoingData=YES
+# createBinFile=NO|YES, default is YES (= create binary files) for receiver
+# in online mode and NO for receiver in offline mode and for sender
+# createBinfile=YES
+# userGroupPrivileges=READONLY|READWRITE|NONE, default is READONLY(= read
+# access on files created by the receiver for members of the receivers user
+# group
+# worldPrivileges=READONLY|READWRITE|NONE, default is READONLY(= read
+# access on files created by the receiver for all users
+#---------------------------
+# strictModeEnable=YES|NO, default YES (=drop connections when frames deviate
+# from protocol
+# strictModeEnable=YES
+# maxFutureTime=INTEGER, maximum positive deviation, default is 1 second
+# maxFutureTime=1
+#---------------------------
+# verSigEnable=NONE|ALL|FRAME|CHANNEL default is ALL (=require and check
+# signature in frames and channels/frames/channels or don't require and check
+# signatures
+verSigEnable=NONE
+# keyDirectory=STRING, default is /opt/idc/certs (dir for keys in ARM format)
+# if STRING is omitted, using of ARM keys is disabled
+#keyDirectory=/home/ssi/data/CERTS
+# certDirectory=STRING, default is /opt/idc/certs (dir for keys in PEM format)
+# if STRING is omitted, using of PEM keys is disabled
+#certDirectory=/home/ssi/data/CERTS
+# ldapServer=STRING, Domain name of primary LDAP server, default ldap.ctbto.org
+# ldapServer=ldap.ctbto.org
+# ldapPort=INTEGER, port of primary LDAP server, default is 389
+# ldapPort=389
+# ldapSecondaryServer=STRING, Domain name of secondary LDAP server,
+# default ldap2.ctbto.org
+# ldapSecondaryServer=ldap2.ctbto.org
+# ldapSecondaryPort=INTEGER, port of secondary LDAP server, default is 389
+# ldapSecondaryPort=389
+# ldapRoot=STRING, default "ou=ims stations, ou=pki lab, o=ctbto"
+# (Search root for LDAP queries)
+# ldapRoot="ou=ims stations, ou=pki lab, o=ctbto"
+# ldapTimeout=INTEGER, max. waiting time for LDAP queries, default 10 seconds
+# ldapTimeout=10
+# crlCheckTime=INTEGER, default is no check (time interval in seconds
+# in which the certificate revoke list is checked. A value of 0 omits the
+# check)
+# crlCheckTime=0
+# keyPreloadFile=STRING, specify the name of a file which defines
+# which keys should be loaded during startup, default EMPTY
+# keyPreloadFile=
+# privateKeyName=STRING, default is empty (file name or tokenID of private key)
+# STRING could be :password:filename or Slot#:pin:pubkeylabel:privkeylabel
+# privateKeyName=
+# privateKeyId=INTEGER, default 0. Key ID of private key
+# used for signing outgoing CD1.1 frames. A value of 0 omits signing of
+# outgoing frames
+# privateKeyId=0
+# controlStation=STRING, specify the name of the station which is authorized
+# to send control commands to the receiver/sender, default EMPTY(=no
+# station is allowed to send commands)
+# controlStation=
+#------------------------------------------------------------- sender --
+# runOperMode=FIXED_INTERVAL
+# runOperMode=CONTINUOUS|FIXED_INTERVAL, default in CONTINUOUS
+#             CONTINUOUS = execution mode
+#             FIXED_INTERVAL = fixed interval mode
+# runOperMode=CONTINUOUS
+# processMode=FIFO|LIFO, default is FIFO, (processing sequence of arrived
+#             data continuous mode only)
+processMode=LIFO
+# sendMode=IMMEDIATE|REPLAY, default is IMMEDIATE
+#          IMMEDIATE = send data without delay
+#          REPLAY = send data in same time delay like received
+#          (in fixed interval and FIFO only)
+# sendMode=IMMEDIATE
+# sleepTimeSched=INTEGER, default is 10 (time in sec. wait scheduler thread)
+# sleepTimeSched=10
+# sleepTimeWork=INTEGER, default is 10 (time in seconds wait worker threads)
+# sleepTimeWork=10
+# lookBackTimeWork=INTEGER, default is 5 (nominal delay time in hours, ??)
+# lookBackTimeSched=INTEGER, default is 168 (look back time in hours, defines
+#                            the oldest index file which is processed by the
+#                            scheduler thread)
+# lookBackTimeSched=168
+# sleepTimeRetry=INTEGER, default is 600 (wait time in seconds for worker
+#                         threads when not connected and no data available)
+# sleepTimeRetry=600
+#-----------------------------------------------------------------------------
+# refListStoreInterval=INTEGER, default is 60 (internal reference list
+#                      store internal in nbr of frames)
+# refListStoreInterval=60
+#
+# refListStorePath=STRING default is /data/local (directory whether store
+#                  internal reference lists)
+refListStorePath=/home/ssi/data/cdsend
+#-----------------------------------------------------------------------------
+# dataConsumerFile=STRING, default is /data/conf/dataconsumers
+#                  (path and file for definitions of data consumers)
+dataConsumerFile=/home/ssi/config/extra/cdtools/cdsend_dataconsumers
+# productionLineFile=STRING, default is /data/conf/productionlines
+#                    (path and file for definitions of production lines)
+productionLineFile=/home/ssi/config/extra/cdtools/cdsend_productionlines
+#-----------------------------------------------------------------------------
+# cdsendFilePath=STRING, default is /var/spool/idc. The directory where all the
+# files generated by CD sender will be written
+cdsendFilePath=/home/ssi/data/cdsend

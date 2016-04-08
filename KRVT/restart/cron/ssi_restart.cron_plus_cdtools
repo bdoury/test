@@ -1,0 +1,2 @@
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/ssi/config/restart/cron/ssiStart 1>/dev/null 2>&1
+0 4 * * * find /home/ssi/data/cdrecv/8500/ -name '*.????????.*.clf' -mtime +30 -exec rm {} \; ; find /home/ssi/data/cdrecv/8500/ -name '*.????????.*.*bin' -mtime +30 -exec rm {} \; ; find /home/ssi/data/cdrecv/8500/ -name '*.????????.*.txt' -mtime +30 -exec rm {} \; ; find /home/ssi/data/cdrecv/8500/ -name '_*.????????.idx' -mtime +30 -exec rm {} \;
